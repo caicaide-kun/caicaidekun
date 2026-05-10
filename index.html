@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -5,1383 +6,535 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>动漫天堂 - 免费在线观看动漫</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* 全局重置 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a0b2e 0%, #4b1d52 50%, #9a2a5b 100%);
             min-height: 100vh;
-            padding-top: 70px;
+            padding-top: 80px;
+            color: white;
         }
 
-        /* 导航栏样式 */
+        /* 导航栏 */
         .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            position: fixed; top: 0; left: 0; right: 0; height: 70px;
+            background: rgba(10, 10, 20, 0.85); backdrop-filter: blur(12px);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 40px; z-index: 1000; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
-
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo {
-            font-size: 28px;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
+        .nav-brand { display: flex; align-items: center; gap: 12px; }
+        .logo { font-size: 28px; filter: drop-shadow(0 0 10px rgba(255,255,255,0.5)); }
         .brand-text {
-            font-size: 24px;
-            font-weight: 700;
-            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 24px; font-weight: 800;
+            background: linear-gradient(90deg, #ff7b54, #ffd166, #06d6a0);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
         }
-
-        .nav-search {
-            display: flex;
-            gap: 5px;
-        }
-
+        
+        .nav-search { display: flex; gap: 8px; }
         .nav-search input {
-            width: 250px;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 14px;
-            transition: all 0.3s;
+            width: 280px; padding: 10px 18px; border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px; background: rgba(255, 255, 255, 0.05);
+            color: white; font-size: 14px; transition: all 0.3s ease;
         }
-
-        .nav-search input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
         .nav-search input:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.2);
-            width: 300px;
+            outline: none; background: rgba(255, 255, 255, 0.15);
+            border-color: #ffd166; width: 320px; box-shadow: 0 0 15px rgba(255, 209, 102, 0.3);
         }
-
+        .nav-search input::placeholder { color: rgba(255, 255, 255, 0.5); }
         .nav-search button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            background: linear-gradient(45deg, #ff6b6b, #feca57);
-            cursor: pointer;
-            transition: transform 0.3s;
+            padding: 10px 22px; border: none; border-radius: 30px;
+            background: linear-gradient(135deg, #ff7b54, #ffd166); color: #1a0b2e;
+            font-weight: bold; cursor: pointer; transition: transform 0.2s;
         }
+        .nav-search button:hover { transform: scale(1.05); }
 
-        .nav-search button:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
+        .nav-user { display: flex; align-items: center; gap: 15px; }
         .btn-login, .btn-register {
-            padding: 8px 20px;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
+            padding: 8px 22px; border-radius: 20px; cursor: pointer;
+            font-size: 14px; font-weight: 600; transition: all 0.3s; border: none;
         }
-
-        .btn-login {
-            background: transparent;
-            border: 2px solid #feca57;
-            color: #feca57;
-        }
-
-        .btn-login:hover {
-            background: #feca57;
-            color: #000;
-        }
-
-        .btn-register {
-            background: linear-gradient(45deg, #ff6b6b, #feca57);
-            color: white;
-        }
-
-        .btn-register:hover {
-            transform: scale(1.05);
-        }
-
-        .user-name {
-            color: #feca57;
-            font-size: 14px;
-            margin-right: 10px;
-        }
-
+        .btn-login { background: transparent; border: 2px solid #ffd166; color: #ffd166; }
+        .btn-login:hover { background: #ffd166; color: #1a0b2e; }
+        .btn-register { background: linear-gradient(135deg, #ff7b54, #ff4d6d); color: white; }
+        .btn-register:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4); }
+        
+        .user-name { color: #ffd166; font-size: 15px; margin-right: 5px; }
         .btn-favorites {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 20px;
-            background: linear-gradient(45deg, #48dbfb, #0abde3);
-            color: white;
-            cursor: pointer;
-            transition: transform 0.3s;
-            margin-right: 10px;
+            padding: 8px 18px; border: none; border-radius: 20px;
+            background: linear-gradient(135deg, #06d6a0, #00b4d8); color: white;
+            cursor: pointer; font-weight: bold; transition: transform 0.2s;
         }
-
-        .btn-favorites:hover {
-            transform: scale(1.05);
-        }
-
+        .btn-favorites:hover { transform: scale(1.05); }
         .btn-logout {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s;
+            padding: 8px 15px; border: none; border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1); color: #ccc; cursor: pointer; transition: all 0.3s;
         }
+        .btn-logout:hover { background: rgba(255, 77, 109, 0.8); color: white; }
 
-        .btn-logout:hover {
-            background: rgba(255, 107, 107, 0.5);
-        }
-
-        /* 主内容区 */
-        .main-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
+        /* 主体内容 */
+        .main-content { max-width: 1440px; margin: 0 auto; padding: 20px; }
         .welcome-banner {
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
+            text-align: center; padding: 50px 20px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            border-radius: 24px; margin-bottom: 40px; border: 1px solid rgba(255,255,255,0.1);
         }
+        .welcome-banner h1 { font-size: 48px; margin-bottom: 15px; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .welcome-banner p { font-size: 18px; color: rgba(255,255,255,0.8); }
 
-        .welcome-banner h1 {
-            font-size: 42px;
-            color: white;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .welcome-banner p {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* 分类标签 */
-        .category-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
+        .category-tabs { display: flex; gap: 12px; margin-bottom: 30px; justify-content: center; flex-wrap: wrap; }
         .tab-btn {
-            padding: 10px 25px;
-            border: none;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 14px;
+            padding: 10px 24px; border: 1px solid rgba(255,255,255,0.2); border-radius: 25px;
+            background: rgba(255, 255, 255, 0.05); color: rgba(255,255,255,0.7);
+            cursor: pointer; transition: all 0.3s; font-size: 14px;
         }
-
-        .tab-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
+        .tab-btn:hover { background: rgba(255,255,255,0.15); color: white; }
         .tab-btn.active {
-            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            background: linear-gradient(90deg, #ff7b54, #ffd166); color: #1a0b2e;
+            border-color: transparent; font-weight: bold; box-shadow: 0 4px 15px rgba(255, 123, 84, 0.4);
         }
 
-        /* 动漫网格 */
-        .anime-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-            padding: 10px;
-        }
-
+        /* 动漫网格布局 */
+        .anime-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 30px; padding: 10px; }
+        
         .anime-card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s;
+            position: relative;
+            background: #2a2a4a; /* 图片加载失败时的兜底背景色 */
+            border-radius: 16px; overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             cursor: pointer;
-            backdrop-filter: blur(10px);
+            display: flex; flex-direction: column;
         }
-
-        .anime-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
+        .anime-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); z-index: 10; }
+        
         .anime-card img {
             width: 100%;
-            height: 320px;
+            height: 300px;
             object-fit: cover;
+            display: block;
+            background-color: #333; /* 加载中背景 */
         }
 
+        /* 修复按钮显示的核心 CSS */
         .anime-info {
             padding: 15px;
+            flex: 1;
+            background: linear-gradient(180deg, rgba(30, 30, 50, 0.8) 0%, #1a1a2e 100%); /* 渐变背景确保按钮可见 */
+            position: relative; z-index: 2;
         }
 
         .anime-title {
-            font-size: 16px;
-            color: white;
-            margin-bottom: 8px;
-            font-weight: 500;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            font-size: 16px; color: white; margin-bottom: 8px; font-weight: bold;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-
-        .anime-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
+        .anime-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
         .anime-category {
-            font-size: 12px;
-            color: #feca57;
-            background: rgba(254, 202, 87, 0.2);
-            padding: 3px 10px;
-            border-radius: 10px;
+            font-size: 11px; color: #ffd166; background: rgba(255, 209, 102, 0.15);
+            padding: 3px 8px; border-radius: 8px; border: 1px solid rgba(255, 209, 102, 0.3);
         }
-
-        .anime-episodes {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .anime-actions {
-            display: flex;
-            gap: 10px;
-        }
-
+        .anime-episodes { font-size: 12px; color: rgba(255,255,255,0.5); }
+        
+        .anime-actions { display: flex; gap: 8px; }
         .btn-watch {
-            flex: 1;
-            padding: 8px;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(45deg, #48dbfb, #0abde3);
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s;
+            flex: 1; padding: 8px; border: none; border-radius: 8px;
+            background: linear-gradient(90deg, #06d6a0, #00b4d8); color: white;
+            cursor: pointer; font-weight: bold; transition: all 0.2s; font-size: 13px;
         }
-
-        .btn-watch:hover {
-            transform: scale(1.05);
-        }
-
+        .btn-watch:hover { filter: brightness(1.1); }
+        
         .btn-favorite {
-            padding: 8px 12px;
-            border: none;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 16px;
+            padding: 8px 12px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05); cursor: pointer; transition: all 0.2s;
+            font-size: 15px; color: white;
         }
+        .btn-favorite:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.4); }
+        .btn-favorite.active { background: #ff4d6d; border-color: #ff4d6d; color: white; }
 
-        .btn-favorite:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-favorite.active {
-            background: #ff6b6b;
-            color: white;
-        }
-
-        /* 收藏页面 */
-        .favorites-page {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .favorites-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-        }
-
-        .favorites-header h2 {
-            color: white;
-            font-size: 28px;
-        }
-
-        .btn-back {
-            padding: 10px 25px;
-            border: none;
-            border-radius: 20px;
-            background: linear-gradient(45deg, #ff6b6b, #feca57);
-            color: white;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .btn-back:hover {
-            transform: scale(1.05);
-        }
-
-        .no-favorites {
-            text-align: center;
-            padding: 60px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-        }
-
-        .no-favorites p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 18px;
-        }
-
-        /* 模态框 */
+        /* 模态框与通用样式 */
         .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
+            display: none; position: fixed; inset: 0;
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px);
+            z-index: 2000; justify-content: center; align-items: center;
         }
-
         .modal-content {
-            background: linear-gradient(135deg, #2d3436 0%, #000000 100%);
-            padding: 40px;
-            border-radius: 20px;
-            width: 400px;
-            max-width: 90%;
-            position: relative;
-            animation: slideIn 0.3s ease;
+            background: linear-gradient(135deg, #1a1a2e 0%, #161625 100%);
+            padding: 40px; border-radius: 24px; width: 450px; max-width: 90%;
+            position: relative; border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6); animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 30px;
-            color: white;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close-btn:hover {
-            color: #ff6b6b;
-        }
-
-        .modal-content h2 {
-            color: white;
-            margin-bottom: 25px;
-            text-align: center;
-            font-size: 28px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-
+        @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 28px; color: rgba(255,255,255,0.5); cursor: pointer; transition: 0.3s; }
+        .close-btn:hover { color: #ff4d6d; transform: rotate(90deg); }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; color: rgba(255,255,255,0.7); margin-bottom: 8px; font-size: 13px; }
         .form-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border: none;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 16px;
-            transition: all 0.3s;
+            width: 100%; padding: 12px; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px; background: rgba(255, 255, 255, 0.05); color: white;
         }
-
-        .form-group input:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
+        .form-group input:focus { outline: none; border-color: #06d6a0; }
         .btn-submit {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(45deg, #ff6b6b, #feca57);
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            transition: transform 0.3s;
+            width: 100%; padding: 14px; border: none; border-radius: 12px;
+            background: linear-gradient(90deg, #ff7b54, #ff4d6d); color: white;
+            font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px;
         }
-
-        .btn-submit:hover {
-            transform: scale(1.02);
-        }
-
-        .error-msg {
-            color: #ff6b6b;
-            margin-top: 15px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        /* 视频模态框 */
-        .video-modal-content {
-            width: 900px;
-            max-width: 95%;
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%;
-            margin: 20px 0;
-            border-radius: 10px;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .video-info {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* 链接列表样式 */
-        .link-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
+        
+        .link-list { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
         .link-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            text-decoration: none;
-            transition: all 0.3s;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px; background: rgba(255, 255, 255, 0.05); border-radius: 12px;
+            text-decoration: none; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
         }
+        .link-item:hover { background: rgba(255,255,255,0.1); transform: translateX(5px); border-color: #06d6a0; }
+        .link-site { display: flex; align-items: center; gap: 12px; }
+        .link-site-icon { font-size: 24px; }
+        .link-site-name { color: white; font-weight: bold; }
+        .link-site-desc { color: rgba(255,255,255,0.5); font-size: 12px; }
+        .link-arrow { color: #06d6a0; font-size: 20px; }
 
-        .link-item:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(5px);
+        .error-msg { color: #ff4d6d; font-size: 13px; margin-top: 10px; min-height: 18px; text-align: center; }
+        .no-favorites { text-align: center; padding: 60px; color: rgba(255,255,255,0.5); font-size: 18px; }
+        .favorites-page { display: none; max-width: 1440px; margin: 0 auto; padding: 20px; }
+        .favorites-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .btn-back {
+            padding: 10px 25px; border: none; border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1); color: white; cursor: pointer; transition: 0.3s;
         }
+        .btn-back:hover { background: #ff4d6d; }
 
-        .link-site {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .link-site-icon {
-            font-size: 24px;
-        }
-
-        .link-site-name {
-            color: white;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        .link-site-desc {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 12px;
-        }
-
-        .link-arrow {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 20px;
-        }
-
-        /* 页脚 */
-        .footer {
-            text-align: center;
-            padding: 30px;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 14px;
-            margin-top: 50px;
-        }
-
-        /* 响应式设计 */
         @media (max-width: 768px) {
-            .navbar {
-                flex-wrap: wrap;
-                padding: 10px 15px;
-                height: auto;
-            }
-
-            .nav-search {
-                order: 3;
-                width: 100%;
-                margin-top: 10px;
-            }
-
-            .nav-search input {
-                width: 100%;
-            }
-
-            .nav-search input:focus {
-                width: 100%;
-            }
-
-            .welcome-banner h1 {
-                font-size: 28px;
-            }
-
-            .anime-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-            }
-
-            .anime-card img {
-                height: 200px;
-            }
-        }
-
-        /* 滚动条样式 */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.2);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #ff6b6b, #feca57);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(45deg, #feca57, #ff6b6b);
+            .navbar { flex-wrap: wrap; height: auto; padding: 15px; }
+            .nav-search { width: 100%; margin-top: 10px; order: 3; }
+            .nav-search input { width: 100%; }
+            .nav-search input:focus { width: 100%; }
+            .anime-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+            .anime-card img { height: 220px; }
         }
     </style>
 </head>
 <body>
-    <!-- 导航栏 -->
+
     <nav class="navbar">
-        <div class="nav-brand">
-            <span class="logo">🎬</span>
-            <span class="brand-text">动漫天堂</span>
-        </div>
+        <div class="nav-brand"><span class="logo">🎬</span><span class="brand-text">动漫天堂</span></div>
         <div class="nav-search">
-            <input type="text" id="searchInput" placeholder="搜索动漫...">
-            <button onclick="searchAnime()">🔍</button>
+            <input type="text" id="searchInput" placeholder="输入动漫名称...">
+            <button id="searchBtn">搜索</button>
         </div>
         <div class="nav-user">
-            <!-- 未登录状态 -->
             <div id="notLoggedIn">
-                <button class="btn-login" onclick="showLoginModal()">登录</button>
-                <button class="btn-register" onclick="showRegisterModal()">注册</button>
+                <button id="loginBtn" class="btn-login">登录</button>
+                <button id="registerBtn" class="btn-register">注册</button>
             </div>
-            <!-- 已登录状态 -->
             <div id="loggedIn" style="display: none;">
-                <span class="user-name">👤 <span id="currentUserName"></span></span>
-                <button class="btn-favorites" onclick="showFavorites()">⭐ 我的收藏</button>
-                <button class="btn-logout" onclick="logout()">退出</button>
+                <span class="user-name">👋 <span id="currentUserName"></span></span>
+                <button id="favBtn" class="btn-favorites">我的收藏</button>
+                <button id="logoutBtn" class="btn-logout">退出</button>
             </div>
         </div>
     </nav>
 
-    <!-- 主内容区 -->
     <main class="main-content">
-        <div class="welcome-banner">
-            <h1>欢迎来到动漫天堂</h1>
-            <p>海量高清动漫，免费在线观看</p>
+        <div class="welcome-banner"><h1>探索无限动漫世界</h1><p>高清资源，流畅播放，属于你的二次元空间</p></div>
+        
+        <div class="category-tabs" id="categoryTabs">
+            <button class="tab-btn active" data-category="all">全部</button>
+            <button class="tab-btn" data-category="action">热血</button>
+            <button class="tab-btn" data-category="romance">恋爱</button>
+            <button class="tab-btn" data-category="comedy">搞笑</button>
+            <button class="tab-btn" data-category="fantasy">奇幻</button>
+            <button class="tab-btn" data-category="sci-fi">科幻</button>
         </div>
-
-        <!-- 分类标签 -->
-        <div class="category-tabs">
-            <button class="tab-btn active" onclick="filterCategory('all')">全部</button>
-            <button class="tab-btn" onclick="filterCategory('action')">热血</button>
-            <button class="tab-btn" onclick="filterCategory('romance')">恋爱</button>
-            <button class="tab-btn" onclick="filterCategory('comedy')">搞笑</button>
-            <button class="tab-btn" onclick="filterCategory('fantasy')">奇幻</button>
-            <button class="tab-btn" onclick="filterCategory('sci-fi')">科幻</button>
-        </div>
-
-        <!-- 动漫列表 -->
-        <div class="anime-grid" id="animeGrid">
-            <!-- 动漫卡片将通过 JavaScript 动态生成 -->
-        </div>
+        
+        <div class="anime-grid" id="animeGrid"></div>
     </main>
 
-    <!-- 收藏页面 -->
-    <div id="favoritesPage" class="favorites-page" style="display: none;">
-        <div class="favorites-header">
-            <h2>⭐ 我的收藏</h2>
-            <button class="btn-back" onclick="hideFavorites()">返回首页</button>
-        </div>
-        <div class="anime-grid" id="favoritesGrid">
-            <!-- 收藏内容将通过 JavaScript 动态生成 -->
-        </div>
-        <div id="noFavorites" class="no-favorites" style="display: none;">
-            <p>暂无收藏，快去收藏你喜欢的动漫吧！</p>
-        </div>
+    <div id="favoritesPage" class="favorites-page">
+        <div class="favorites-header"><h2>⭐ 我的收藏</h2><button id="backHomeBtn" class="btn-back">返回首页</button></div>
+        <div class="anime-grid" id="favoritesGrid"></div>
+        <div id="noFavorites" class="no-favorites" style="display: none;">暂无收藏内容</div>
     </div>
 
-    <!-- 登录弹窗 -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeLoginModal()">&times;</span>
-            <h2>登录</h2>
-            <form onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label>用户名</label>
-                    <input type="text" id="loginUsername" required>
-                </div>
-                <div class="form-group">
-                    <label>密码</label>
-                    <input type="password" id="loginPassword" required>
-                </div>
-                <button type="submit" class="btn-submit">登录</button>
-            </form>
-            <p id="loginError" class="error-msg"></p>
-        </div>
-    </div>
+    <!-- 模态框组 -->
+    <div id="loginModal" class="modal"><div class="modal-content">
+        <span class="close-btn" data-close="loginModal">&times;</span>
+        <h2 style="text-align:center;margin-bottom:25px;">欢迎回来</h2>
+        <form id="loginForm">
+            <div class="form-group"><label>用户名</label><input type="text" id="loginUsername" required></div>
+            <div class="form-group"><label>密码</label><input type="password" id="loginPassword" required></div>
+            <button type="submit" class="btn-submit">立即登录</button>
+        </form>
+        <p id="loginError" class="error-msg"></p>
+    </div></div>
 
-    <!-- 注册弹窗 -->
-    <div id="registerModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeRegisterModal()">&times;</span>
-            <h2>注册</h2>
-            <form onsubmit="handleRegister(event)">
-                <div class="form-group">
-                    <label>用户名</label>
-                    <input type="text" id="registerUsername" required>
-                </div>
-                <div class="form-group">
-                    <label>密码</label>
-                    <input type="password" id="registerPassword" required>
-                </div>
-                <div class="form-group">
-                    <label>确认密码</label>
-                    <input type="password" id="confirmPassword" required>
-                </div>
-                <button type="submit" class="btn-submit">注册</button>
-            </form>
-            <p id="registerError" class="error-msg"></p>
-        </div>
-    </div>
+    <div id="registerModal" class="modal"><div class="modal-content">
+        <span class="close-btn" data-close="registerModal">&times;</span>
+        <h2 style="text-align:center;margin-bottom:25px;">创建账号</h2>
+        <form id="registerForm">
+            <div class="form-group"><label>用户名</label><input type="text" id="registerUsername" required></div>
+            <div class="form-group"><label>密码</label><input type="password" id="registerPassword" required></div>
+            <div class="form-group"><label>确认密码</label><input type="password" id="confirmPassword" required></div>
+            <button type="submit" class="btn-submit">注册账号</button>
+        </form>
+        <p id="registerError" class="error-msg"></p>
+    </div></div>
 
-    <!-- 视频链接选择弹窗 -->
-    <div id="videoModal" class="modal">
-        <div class="modal-content" style="width: 500px;">
-            <span class="close-btn" onclick="closeVideoModal()">&times;</span>
-            <h2 id="videoTitle">动漫标题</h2>
-            <p id="videoDescription" style="color: rgba(255,255,255,0.7); margin-bottom: 20px; font-size: 14px;"></p>
-            <div class="link-list" id="linkList">
-                <!-- 链接将通过 JavaScript 动态生成 -->
-            </div>
-        </div>
-    </div>
+    <div id="videoModal" class="modal"><div class="modal-content" style="width: 500px;">
+        <span class="close-btn" data-close="videoModal">&times;</span>
+        <h2 id="videoTitle" style="text-align:center;margin-bottom:10px;"></h2>
+        <p id="videoDescription" style="color:rgba(255,255,255,0.6);text-align:center;font-size:14px;margin-bottom:20px;line-height:1.5;"></p>
+        <div style="color:#ffd166;font-size:12px;margin-bottom:10px;text-align:center;">请选择观看源：</div>
+        <div class="link-list" id="linkList"></div>
+    </div></div>
 
-    <!-- 页脚 -->
-    <footer class="footer">
-        <p>© 2024 动漫天堂 - 免费在线观看动漫 | 仅供学习交流使用</p>
-    </footer>
+    <footer style="text-align:center;padding:40px;color:rgba(255,255,255,0.4);font-size:14px;">© 2024 动漫天堂 | 仅供学习交流</footer>
 
     <script>
-        // 动漫数据
-        const animeList = [
-            {
-                id: 1,
-                title: "鬼灭之刃",
-                category: "action",
-                categoryLabel: "热血",
-                episodes: "44集",
-                image: "https://cdn.myanimelist.net/images/anime/1286/99889l.jpg",
-                description: "大正时期的日本，心地善良的少年炭治郎靠卖炭维持生计。某天，家人遭到鬼舞辻无惨的袭击，妹妹祢豆子变成了鬼。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E9%AC%BC%E7%81%AD%E4%B9%8B%E5%88%83", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E9%AC%BC%E7%81%AD%E4%B9%8B%E5%88%83", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E9%AC%BC%E7%81%AD%E4%B9%8B%E5%88%83", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 2,
-                title: "进击的巨人",
-                category: "action",
-                categoryLabel: "热血",
-                episodes: "87集",
-                image: "https://cdn.myanimelist.net/images/anime/10/47347l.jpg",
-                description: "107年前，世界上突然出现了人类的天敌巨人。人类为了生存，建造了三重巨大的墙壁来阻止巨人的入侵。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E8%BF%9B%E5%87%BB%E7%9A%84%E5%B7%A8%E4%BA%BA", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E8%BF%9B%E5%87%BB%E7%9A%84%E5%B7%A8%E4%BA%BA", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E8%BF%9B%E5%87%BB%E7%9A%84%E5%B7%A8%E4%BA%BA", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 3,
-                title: "你的名字",
-                category: "romance",
-                categoryLabel: "恋爱",
-                episodes: "剧场版",
-                image: "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2395771160.jpg",
-                description: "在东京生活的男高中生�的梦总是梦见自己在深山中的乡村里与一位从未见过的女孩交换身体。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 4,
-                title: "咒术回战",
-                category: "action",
-                categoryLabel: "热血",
-                episodes: "48集",
-                image: "https://cdn.myanimelist.net/images/anime/1171/109222l.jpg",
-                description: "虎杖悠仁是一位体育全能的高中生，某天为了救学长而吞下了两面宿傩的手指，成为了诅咒之王宿傩的容器。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E5%92%92%E6%9C%AF%E5%9B%9E%E6%88%98", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E5%92%92%E6%9C%AF%E5%9B%9E%E6%88%98", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E5%92%92%E6%9C%AF%E5%9B%9E%E6%88%98", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 5,
-                title: "间谍过家家",
-                category: "comedy",
-                categoryLabel: "搞笑",
-                episodes: "25集",
-                image: "https://cdn.myanimelist.net/images/anime/1441/122795l.jpg",
-                description: "黄昏是西国的一名间谍，为了完成任务，他组建了一个临时家庭。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E9%97%B4%E8%B0%8D%E9%81%8E%E5%AE%B6%E5%AE%B6", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E9%97%B4%E8%B0%8D%E9%81%8E%E5%AE%B6%E5%AE%B6", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E9%97%B4%E8%B0%8D%E9%81%8E%E5%AE%B6%E5%AE%B6", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 6,
-                title: "刀剑神域",
-                category: "sci-fi",
-                categoryLabel: "科幻",
-                episodes: "96集",
-                image: "https://cdn.myanimelist.net/images/anime/11/39717l.jpg",
-                description: "2022年，世界第一款完全潜行VRMMORPG「Sword Art Online」正式上线。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E5%88%80%E5%89%91%E7%A5%9E%E5%9F%9F", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E5%88%80%E5%89%91%E7%A5%9E%E5%9F%9F", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E5%88%80%E5%89%91%E7%A5%9E%E5%9F%9F", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 7,
-                title: "鬼灭之刃 游郭篇",
-                category: "action",
-                categoryLabel: "热血",
-                episodes: "11集",
-                image: "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2725067134.jpg",
-                description: "炭治郎一行人跟随音柱宇髄天元前往游郭执行任务。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E9%AC%BC%E7%81%AD%E4%B9%8B%E5%88%83", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E9%AC%BC%E7%81%AD%E4%B9%8B%E5%88%83%E6%B8%B8%E9%83%AD%E7%AF%87", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E9%AC%BC%E7%81%AD%E4%B9%8B%E5%88%83", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 8,
-                title: "干物妹小埋",
-                category: "comedy",
-                categoryLabel: "搞笑",
-                episodes: "24集",
-                image: "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2235532435.jpg",
-                description: "土间埋在外是完美女高中生，在家里却是懒惰的干物女。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E5%B9%B2%E7%89%A9%E5%A6%B9%E5%B0%8F%E5%9F%8B", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E5%B9%B2%E7%89%A9%E5%A6%B9%E5%B0%8F%E5%9F%8B", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E5%B9%B2%E7%89%A9%E5%A6%B9%E5%B0%8F%E5%9F%8B", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 9,
-                title: "Re:从零开始的异世界生活",
-                category: "fantasy",
-                categoryLabel: "奇幻",
-                episodes: "50集",
-                image: "https://cdn.myanimelist.net/images/anime/1522/128039l.jpg",
-                description: "菜月昴在从便利店回来的路上被召唤到异世界，获得了死亡回归的能力。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/Re%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=Re%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=Re%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 10,
-                title: "辉夜大小姐想让我告白",
-                category: "romance",
-                categoryLabel: "恋爱",
-                episodes: "37集",
-                image: "https://cdn.myanimelist.net/images/anime/1295/106551l.jpg",
-                description: "学生会长白银御行与副会长四宫辉夜互相爱慕，但两人都认为先告白的人就是输家。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E8%BE%89%E5%A4%9C%E5%A4%A7%E5%B0%8F%E5%A7%90", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E8%BE%89%E5%A4%9C%E5%A4%A7%E5%B0%8F%E5%A7%90", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E8%BE%89%E5%A4%9C%E5%A4%A7%E5%B0%8F%E5%A7%90", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 11,
-                title: "无职转生",
-                category: "fantasy",
-                categoryLabel: "奇幻",
-                episodes: "23集",
-                image: "https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2630034725.jpg",
-                description: "34岁的无职处男被卡车撞死后转生到异世界。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E6%97%A0%E8%81%8C%E8%BD%AC%E7%94%9F", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E6%97%A0%E8%81%8C%E8%BD%AC%E7%94%9F", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E6%97%A0%E8%81%8C%E8%BD%AC%E7%94%9F", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 12,
-                title: "齐木楠雄的灾难",
-                category: "comedy",
-                categoryLabel: "搞笑",
-                episodes: "120集",
-                image: "https://cdn.myanimelist.net/images/anime/1767/111035l.jpg",
-                description: "拥有所有超能力的齐木楠雄只想过普通人的生活。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E9%BD%90%E6%9C%A8%E6%A5%A0%E9%9B%84", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E9%BD%90%E6%9C%A8%E6%A5%A0%E9%9B%84", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E9%BD%90%E6%9C%A8%E6%A5%A0%E9%9B%84", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 13,
-                title: "命运石之门",
-                category: "sci-fi",
-                categoryLabel: "科幻",
-                episodes: "24集",
-                image: "https://cdn.myanimelist.net/images/anime/5/73199l.jpg",
-                description: "自称疯狂科学家的冈部伦太郎偶然发明了能够向过去发送短信的装置。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E5%91%BD%E8%BF%90%E7%9F%B3%E4%B9%8B%E9%97%A8", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E5%91%BD%E8%BF%90%E7%9F%B3%E4%B9%8B%E9%97%A8", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E5%91%BD%E8%BF%90%E7%9F%B3%E4%B9%8B%E9%97%A8", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 14,
-                title: "紫罗兰永恒花园",
-                category: "romance",
-                categoryLabel: "恋爱",
-                episodes: "13集",
-                image: "https://cdn.myanimelist.net/images/anime/1795/95088l.jpg",
-                description: "薇尔莉特·伊芙加登是一名自动手记人偶，通过为他人代笔写信，她逐渐理解了爱的含义。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E7%B4%AB%E7%BD%97%E5%85%B0%E6%B0%B8%E6%81%92%E8%8A%B1%E5%9B%AD", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E7%B4%AB%E7%BD%97%E5%85%B0%E6%B0%B8%E6%81%92%E8%8A%B1%E5%9B%AD", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E7%B4%AB%E7%BD%97%E5%85%B0%E6%B0%B8%E6%81%92%E8%8A%B1%E5%9B%AD", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 15,
-                title: "东京喰种",
-                category: "action",
-                categoryLabel: "热血",
-                episodes: "48集",
-                image: "https://cdn.myanimelist.net/images/anime/5/64449l.jpg",
-                description: "平凡的大学生金木研因为一场事故被移植了喰种的器官。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E4%B8%9C%E4%BA%AC%E5%96%B0%E7%A7%8D", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E4%B8%9C%E4%BA%AC%E5%96%B0%E7%A7%8D", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E4%B8%9C%E4%BA%AC%E5%96%B0%E7%A7%8D", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 16,
-                title: "关于我转生变成史莱姆这档事",
-                category: "fantasy",
-                categoryLabel: "奇幻",
-                episodes: "48集",
-                image: "https://cdn.myanimelist.net/images/anime/1069/98291l.jpg",
-                description: "37岁的上班族三上悟被刺杀后转生到异世界成为史莱姆。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E5%8F%B2%E8%8E%B1%E5%A7%86", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E5%8F%B2%E8%8E%B1%E5%A7%86", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E5%8F%B2%E8%8E%B1%E5%A7%86", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 17,
-                title: "心理测量者",
-                category: "sci-fi",
-                categoryLabel: "科幻",
-                episodes: "33集",
-                image: "https://cdn.myanimelist.net/images/anime/5/43399l.jpg",
-                description: "在未来日本，人类的心理状态和性格倾向都可以被数值化。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E5%BF%83%E7%90%86%E6%B5%8B%E9%87%8F%E8%80%85", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E5%BF%83%E7%90%86%E6%B5%8B%E9%87%8F%E8%80%85", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E5%BF%83%E7%90%86%E6%B5%8B%E9%87%8F%E8%80%85", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 18,
-                title: "夏日重现",
-                category: "fantasy",
-                categoryLabel: "奇幻",
-                episodes: "25集",
-                image: "https://cdn.myanimelist.net/images/anime/1152/122525l.jpg",
-                description: "主角�的慎平因青梅竹马的死讯回到故乡，却陷入了时间循环。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E5%A4%8F%E6%97%A5%E9%87%8D%E7%8E%B0", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E5%A4%8F%E6%97%A5%E9%87%8D%E7%8E%B0", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E5%A4%8F%E6%97%A5%E9%87%8D%E7%8E%B0", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 19,
-                title: "钢之炼金术师 FA",
-                category: "action",
-                categoryLabel: "热血",
-                episodes: "64集",
-                image: "https://cdn.myanimelist.net/images/anime/1208/94745l.jpg",
-                description: "爱德华和阿尔冯斯兄弟为了复活死去的母亲进行了禁忌的人体炼成。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E9%92%A2%E4%B9%8B%E7%82%BC%E9%87%91%E6%9C%AF%E5%B8%88", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E9%92%A2%E4%B9%8B%E7%82%BC%E9%87%91%E6%9C%AF%E5%B8%88", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E9%92%A2%E4%B9%8B%E7%82%BC%E9%87%91%E6%9C%AF%E5%B8%88", icon: "🏝️", desc: "更新快速" }
-                ]
-            },
-            {
-                id: 20,
-                title: "我推的孩子",
-                category: "romance",
-                categoryLabel: "恋爱",
-                episodes: "11集",
-                image: "https://cdn.myanimelist.net/images/anime/1812/134736l.jpg",
-                description: "医生雨宫吾郎意外转生为自己推的偶像星野爱的儿子。",
-                links: [
-                    { name: "樱花动漫", url: "https://www.yinghuacd.com/search/%E6%88%91%E6%8E%A8%E7%9A%84%E5%AD%A9%E5%AD%90", icon: "🌸", desc: "免费在线观看" },
-                    { name: "AGE动漫", url: "https://www.agefans.net/search?query=%E6%88%91%E6%8E%A8%E7%9A%84%E5%AD%A9%E5%AD%90", icon: "🎬", desc: "高清资源" },
-                    { name: "动漫岛", url: "https://www.dmd5.com/search?wd=%E6%88%91%E6%8E%A8%E7%9A%84%E5%AD%A9%E5%AD%90", icon: "🏝️", desc: "更新快速" }
-                ]
-            }
-        ];
+        document.addEventListener('DOMContentLoaded', () => {
+            let users = [];
+            let currentUser = null;
+            let favorites = [];
 
-        // 当前用户
-        let currentUser = null;
+            const DOM = {
+                animeGrid: document.getElementById('animeGrid'),
+                searchInput: document.getElementById('searchInput'),
+                searchBtn: document.getElementById('searchBtn'),
+                notLoggedIn: document.getElementById('notLoggedIn'),
+                loggedIn: document.getElementById('loggedIn'),
+                currentUserName: document.getElementById('currentUserName'),
+                loginBtn: document.getElementById('loginBtn'),
+                registerBtn: document.getElementById('registerBtn'),
+                logoutBtn: document.getElementById('logoutBtn'),
+                favBtn: document.getElementById('favBtn'),
+                backHomeBtn: document.getElementById('backHomeBtn'),
+                loginModal: document.getElementById('loginModal'),
+                registerModal: document.getElementById('registerModal'),
+                videoModal: document.getElementById('videoModal'),
+                loginForm: document.getElementById('loginForm'),
+                registerForm: document.getElementById('registerForm'),
+                favoritesPage: document.getElementById('favoritesPage'),
+                mainContent: document.querySelector('.main-content'),
+                categoryTabs: document.getElementById('categoryTabs'),
+                tabButtons: document.querySelectorAll('.tab-btn')
+            };
 
-        // 初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            checkLoginStatus();
-            renderAnimeList(animeList);
-        });
+            const SITE_CONFIG = [
+                { name: '樱花动漫', icon: '🌸', desc: '极速播放', base: 'https://cn.yhdongman.com.cn/search.html?searchkey=' },
+                { name: 'AGE动漫', icon: '🎬', desc: '高清画质', base: 'https://home.age-dm.com.cn/search.html?keyword=' }
+            ];
 
-        // 检查登录状态
-        function checkLoginStatus() {
-            const savedUser = localStorage.getItem('currentUser');
-            if (savedUser) {
-                currentUser = JSON.parse(savedUser);
-                updateUIForLoggedIn();
-            }
-        }
+            // 动漫数据（图片源使用 MAL，如失败会自动替换为 SVG 标题海报）
+            const animeList = [
+                { id: 1, title: "鬼灭之刃", category: "action", categoryLabel: "热血", episodes: "44集", image: "https://cdn.myanimelist.net/images/anime/1286/99889l.jpg", description: "少年炭治郎家人遇害，妹妹变成鬼，为寻复仇与救赎之法踏上斩鬼之旅。" },
+                { id: 2, title: "进击的巨人", category: "action", categoryLabel: "热血", episodes: "87集", image: "https://cdn.myanimelist.net/images/anime/10/47347l.jpg", description: "人类为躲避巨人筑起三重高墙，百年和平被打破，生存之战就此展开。" },
+                { id: 3, title: "你的名字", category: "romance", categoryLabel: "恋爱", episodes: "剧场版", image: "https://ts1.tc.mm.bing.net/th/id/OIP-C.FMJA5k3_N36BNh2GfFw0xQHaNK?cb=thfvnext&rs=1&pid=ImgDetMain&o=7&rm=3", description: "男女高中生在梦中互换身体，跨越时空与距离的羁绊悄然相连。" },
+                { id: 4, title: "咒术回战", category: "action", categoryLabel: "热血", episodes: "48集", image: "https://cdn.myanimelist.net/images/anime/1171/109222l.jpg", description: "高中生虎杖吞下诅咒之王手指，加入咒术高专，与特级诅咒展开殊死搏斗。" },
+                { id: 5, title: "间谍过家家", category: "comedy", categoryLabel: "搞笑", episodes: "25集", image: "https://cdn.myanimelist.net/images/anime/1441/122795l.jpg", description: "间谍、杀手与读心者组成的虚假家庭，鸡飞狗跳的温馨日常。" },
+                { id: 6, title: "刀剑神域", category: "sci-fi", categoryLabel: "科幻", episodes: "96集", image: "https://cdn.myanimelist.net/images/anime/11/39717l.jpg", description: "玩家被困死亡游戏SAO，桐人凭借实力在艾恩葛朗特突破生死界限。" },
+                { id: 7, title: "鬼灭之刃 游郭篇", category: "action", categoryLabel: "热血", episodes: "11集", image: "https://n.sinaimg.cn/sinakd20118/677/w960h1317/20210530/08a4-kquziii6047656.jpg", description: "炭治郎潜入花街，与音柱联手对抗上弦之陆，华丽刀光撕裂暗幕。" },
+                { id: 8, title: "干物妹小埋", category: "comedy", categoryLabel: "搞笑", episodes: "24集", image: "https://gips2.baidu.com/it/u=1402875273,1594618488&fm=3074&app=3074&f=JPEG", description: "在外完美无瑕的女高中生，回家化身裹着仓鼠斗篷的干物女。" },
+                { id: 9, title: "Re:从零开始的异世界生活", category: "fantasy", categoryLabel: "奇幻", episodes: "50集", image: "https://cdn.myanimelist.net/images/anime/1522/128039l.jpg", description: "高中生被召唤至异世界，获得“死亡回归”能力，在绝望循环中寻找唯一解。" },
+                { id: 10, title: "辉夜大小姐想让我告白", category: "romance", categoryLabel: "恋爱", episodes: "37集", image: "https://cdn.myanimelist.net/images/anime/1295/106551l.jpg", description: "天才学生会长与副会长互生情愫，上演高智商恋爱头脑战。" },
+                { id: 11, title: "无职转生", category: "fantasy", categoryLabel: "奇幻", episodes: "23集", image: "https://bkimg.cdn.bcebos.com/pic/09fa513d269759ee3d6dae44adb054166d224e4a71a2", description: "34岁无业大叔转生异世界，带着前世悔恨决心认真活下去。" },
+                { id: 12, title: "齐木楠雄的灾难", category: "comedy", categoryLabel: "搞笑", episodes: "120集", image: "https://bkimg.cdn.bcebos.com/pic/c9fcc3cec3fdfc039245d5cb64739094a4c27d1e8826", description: "全能超能力者只想低调生活，却总被奇葩朋友卷入令人啼笑皆非的日常。" },
+                { id: 13, title: "命运石之门", category: "sci-fi", categoryLabel: "科幻", episodes: "24集", image: "https://cdn.myanimelist.net/images/anime/5/73199l.jpg", description: "偶然发明的手机能向过去发短信，科学家卷入时间线收束的残酷命运。" },
+                { id: 14, title: "紫罗兰永恒花园", category: "romance", categoryLabel: "恋爱", episodes: "13集", image: "https://cdn.myanimelist.net/images/anime/1795/95088l.jpg", description: "曾是战争机器的少女成为代笔人偶，在书写信件中逐渐读懂“爱”的含义。" },
+                { id: 15, title: "东京喰种", category: "action", categoryLabel: "热血", episodes: "48集", image: "https://cdn.myanimelist.net/images/anime/5/64449l.jpg", description: "大学生意外移植喰种器官，在人类与怪物的夹缝中挣扎。" },
+                { id: 16, title: "关于我转生变成史莱姆这档事", category: "fantasy", categoryLabel: "奇幻", episodes: "48集", image: "https://q5.itc.cn/q_70/images01/20240803/2482794746a648e99702845d5002cf9c.jpeg", description: "上班族转生为史莱姆，凭借吞噬与拟态能力，建立魔物共生之国。" },
+                { id: 17, title: "夏日重现", category: "sci-fi", categoryLabel: "科幻", episodes: "25集", image: "https://c-ssl.dtstatic.com/uploads/blog/202211/13/20221113082558_7192b.thumb.1000_0.jpg", description: "少年陷入“影子”取代人类的无限轮回，必须在夏日终结前打破死局。" }
+            ];
 
-        // 更新已登录状态的UI
-        function updateUIForLoggedIn() {
-            document.getElementById('notLoggedIn').style.display = 'none';
-            document.getElementById('loggedIn').style.display = 'flex';
-            document.getElementById('currentUserName').textContent = currentUser.username;
-        }
+            const closeModal = (id) => { document.getElementById(id).style.display = 'none'; };
+            const openModal = (id) => { document.getElementById(id).style.display = 'flex'; };
 
-        // 渲染动漫列表
-        function renderAnimeList(animes) {
-            const grid = document.getElementById('animeGrid');
-            grid.innerHTML = '';
+            // 生成 SVG 占位图（作为兜底，确保图片不会裂开或消失）
+            const createFallbackSVG = (title) => {
+                const colors = ["#ff7b54", "#ffd166", "#06d6a0", "#00b4d8", "#ff4d6d"];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                // 对中文进行 URL 编码以确保 SVG 安全
+                const encodedTitle = encodeURIComponent(title);
+                return `data:image/svg+xml;charset=utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='450' viewBox='0 0 300 450'><rect width='300' height='450' fill='${randomColor}'/><text x='50%25' y='40%25' font-size='30' fill='white' font-family='sans-serif' font-weight='bold' text-anchor='middle' dy='.3em'>${encodedTitle}</text><text x='50%25' y='65%25' font-size='16' fill='rgba(255,255,255,0.8)' font-family='sans-serif' text-anchor='middle'>封面加载中...</text></svg>`;
+            };
 
-            animes.forEach(anime => {
-                const isFavorite = checkIfFavorite(anime.id);
-                const card = document.createElement('div');
-                card.className = 'anime-card';
-                card.innerHTML = `
-                    <img src="${anime.image}" alt="${anime.title}" onerror="this.src='https://via.placeholder.com/400x500/667eea/ffffff?text=${encodeURIComponent(anime.title)}'">
-                    <div class="anime-info">
-                        <div class="anime-title">${anime.title}</div>
-                        <div class="anime-meta">
-                            <span class="anime-category">${anime.categoryLabel}</span>
-                            <span class="anime-episodes">${anime.episodes}</span>
-                        </div>
-                        <div class="anime-actions">
-                            <button class="btn-watch" onclick="watchAnime(${anime.id})">观看</button>
-                            <button class="btn-favorite ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(event, ${anime.id})">
-                                ${isFavorite ? '❤️' : '🤍'}
-                            </button>
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        // 检查是否已收藏
-        function checkIfFavorite(animeId) {
-            if (!currentUser) return false;
-            const favorites = JSON.parse(localStorage.getItem('favorites_' + currentUser.username) || '[]');
-            return favorites.includes(animeId);
-        }
-
-        // 切换收藏状态
-        function toggleFavorite(event, animeId) {
-            event.stopPropagation();
-
-            if (!currentUser) {
-                alert('请先登录后再收藏');
-                showLoginModal();
-                return;
-            }
-
-            let favorites = JSON.parse(localStorage.getItem('favorites_' + currentUser.username) || '[]');
-            const btn = event.target;
-
-            if (favorites.includes(animeId)) {
-                favorites = favorites.filter(id => id !== animeId);
-                btn.classList.remove('active');
-                btn.innerHTML = '🤍';
-            } else {
-                favorites.push(animeId);
-                btn.classList.add('active');
-                btn.innerHTML = '❤️';
-            }
-
-            localStorage.setItem('favorites_' + currentUser.username, JSON.stringify(favorites));
-        }
-
-        // 观看动漫
-        function watchAnime(animeId) {
-            const anime = animeList.find(a => a.id === animeId);
-            if (anime) {
-                document.getElementById('videoTitle').textContent = anime.title;
-                document.getElementById('videoDescription').textContent = anime.description;
-
-                // 生成链接列表
-                const linkList = document.getElementById('linkList');
-                linkList.innerHTML = '';
-
-                anime.links.forEach(link => {
-                    const linkItem = document.createElement('a');
-                    linkItem.href = link.url;
-                    linkItem.target = '_blank';
-                    linkItem.className = 'link-item';
-                    linkItem.innerHTML = `
-                        <div class="link-site">
-                            <span class="link-site-icon">${link.icon}</span>
-                            <div>
-                                <div class="link-site-name">${link.name}</div>
-                                <div class="link-site-desc">${link.desc}</div>
-                            </div>
-                        </div>
-                        <span class="link-arrow">→</span>
-                    `;
-                    linkList.appendChild(linkItem);
-                });
-
-                document.getElementById('videoModal').style.display = 'flex';
-            }
-        }
-
-        // 关闭视频弹窗
-        function closeVideoModal() {
-            document.getElementById('videoModal').style.display = 'none';
-        }
-
-        // 显示登录弹窗
-        function showLoginModal() {
-            document.getElementById('loginModal').style.display = 'flex';
-            document.getElementById('loginError').textContent = '';
-        }
-
-        // 关闭登录弹窗
-        function closeLoginModal() {
-            document.getElementById('loginModal').style.display = 'none';
-            document.getElementById('loginUsername').value = '';
-            document.getElementById('loginPassword').value = '';
-        }
-
-        // 显示注册弹窗
-        function showRegisterModal() {
-            document.getElementById('registerModal').style.display = 'flex';
-            document.getElementById('registerError').textContent = '';
-        }
-
-        // 关闭注册弹窗
-        function closeRegisterModal() {
-            document.getElementById('registerModal').style.display = 'none';
-            document.getElementById('registerUsername').value = '';
-            document.getElementById('registerPassword').value = '';
-            document.getElementById('confirmPassword').value = '';
-        }
-
-        // 处理登录
-        function handleLogin(event) {
-            event.preventDefault();
-
-            const username = document.getElementById('loginUsername').value.trim();
-            const password = document.getElementById('loginPassword').value;
-
-            const users = JSON.parse(localStorage.getItem('users') || '{}');
-
-            if (!users[username]) {
-                document.getElementById('loginError').textContent = '用户不存在';
-                return;
-            }
-
-            if (users[username] !== password) {
-                document.getElementById('loginError').textContent = '密码错误';
-                return;
-            }
-
-            currentUser = { username: username };
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            updateUIForLoggedIn();
-            closeLoginModal();
-            renderAnimeList(animeList);
-        }
-
-        // 处理注册
-        function handleRegister(event) {
-            event.preventDefault();
-
-            const username = document.getElementById('registerUsername').value.trim();
-            const password = document.getElementById('registerPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-
-            if (username.length < 3) {
-                document.getElementById('registerError').textContent = '用户名至少需要3个字符';
-                return;
-            }
-
-            if (password.length < 6) {
-                document.getElementById('registerError').textContent = '密码至少需要6个字符';
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                document.getElementById('registerError').textContent = '两次输入的密码不一致';
-                return;
-            }
-
-            const users = JSON.parse(localStorage.getItem('users') || '{}');
-
-            if (users[username]) {
-                document.getElementById('registerError').textContent = '用户名已存在';
-                return;
-            }
-
-            users[username] = password;
-            localStorage.setItem('users', JSON.stringify(users));
-
-            alert('注册成功！请登录');
-            closeRegisterModal();
-            showLoginModal();
-        }
-
-        // 退出登录
-        function logout() {
-            currentUser = null;
-            localStorage.removeItem('currentUser');
-            document.getElementById('notLoggedIn').style.display = 'flex';
-            document.getElementById('loggedIn').style.display = 'none';
-            renderAnimeList(animeList);
-        }
-
-        // 显示收藏页面
-        function showFavorites() {
-            if (!currentUser) return;
-
-            document.querySelector('.main-content').style.display = 'none';
-            document.getElementById('favoritesPage').style.display = 'block';
-
-            renderFavorites();
-        }
-
-        // 隐藏收藏页面
-        function hideFavorites() {
-            document.getElementById('favoritesPage').style.display = 'none';
-            document.querySelector('.main-content').style.display = 'block';
-        }
-
-        // 渲染收藏列表
-        function renderFavorites() {
-            const favorites = JSON.parse(localStorage.getItem('favorites_' + currentUser.username) || '[]');
-            const grid = document.getElementById('favoritesGrid');
-            const noFavorites = document.getElementById('noFavorites');
-
-            if (favorites.length === 0) {
-                grid.innerHTML = '';
-                noFavorites.style.display = 'block';
-                return;
-            }
-
-            noFavorites.style.display = 'none';
-            grid.innerHTML = '';
-
-            favorites.forEach(animeId => {
-                const anime = animeList.find(a => a.id === animeId);
-                if (anime) {
+            const renderAnime = (list, container = DOM.animeGrid) => {
+                container.innerHTML = '';
+                if (!list.length) {
+                    container.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:50px;color:rgba(255,255,255,0.5);">未找到相关动漫</p>';
+                    return;
+                }
+                list.forEach(anime => {
+                    const isFav = favorites.includes(anime.id);
                     const card = document.createElement('div');
                     card.className = 'anime-card';
+                    
+                    // 核心修复：图片加载失败时自动替换为 SVG 海报
+                    const imgSrc = anime.image;
+                    const fallbackSrc = createFallbackSVG(anime.title);
+
                     card.innerHTML = `
-                        <img src="${anime.image}" alt="${anime.title}" onerror="this.src='https://via.placeholder.com/400x500/667eea/ffffff?text=${encodeURIComponent(anime.title)}'">
+                        <img src="${imgSrc}" alt="${anime.title}" loading="lazy" referrerpolicy="no-referrer" crossorigin="anonymous" 
+                             onerror="this.onerror=null;this.src='${fallbackSrc}';">
                         <div class="anime-info">
-                            <div class="anime-title">${anime.title}</div>
+                            <h3 class="anime-title">${anime.title}</h3>
                             <div class="anime-meta">
                                 <span class="anime-category">${anime.categoryLabel}</span>
                                 <span class="anime-episodes">${anime.episodes}</span>
                             </div>
                             <div class="anime-actions">
-                                <button class="btn-watch" onclick="watchAnime(${anime.id})">观看</button>
-                                <button class="btn-favorite active" onclick="removeFavorite(event, ${anime.id})">❤️</button>
+                                <button class="btn-watch" data-id="${anime.id}">▶ 观看</button>
+                                <button class="btn-favorite ${isFav ? 'active' : ''}" data-id="${anime.id}">${isFav ? '❤️' : '🤍'}</button>
                             </div>
                         </div>
                     `;
-                    grid.appendChild(card);
+                    container.appendChild(card);
+                });
+            };
+
+            // 全局事件委托：处理所有动态生成的按钮
+            document.addEventListener('click', (e) => {
+                const target = e.target;
+                const watchBtn = target.closest('.btn-watch');
+                const favBtnItem = target.closest('.btn-favorite');
+
+                // 点击观看
+                if (watchBtn) {
+                    const id = parseInt(watchBtn.dataset.id);
+                    const anime = animeList.find(a => a.id === id);
+                    document.getElementById('videoTitle').textContent = anime.title;
+                    document.getElementById('videoDescription').textContent = anime.description;
+                    const linkList = document.getElementById('linkList');
+                    linkList.innerHTML = '';
+                    
+                    SITE_CONFIG.forEach(site => {
+                        const a = document.createElement('a');
+                        a.className = 'link-item';
+                        a.href = '#';
+                        a.innerHTML = `
+                            <div class="link-site"><span class="link-site-icon">${site.icon}</span><div><div class="link-site-name">${site.name}</div><div class="link-site-desc">${site.desc}</div></div></div>
+                            <span class="link-arrow">→</span>
+                        `;
+                        a.addEventListener('click', (ev) => {
+                            ev.preventDefault();
+                            closeModal('videoModal');
+                            // 修复跳转：使用新窗口打开，避免拦截
+                            window.open(site.base + encodeURIComponent(anime.title), '_blank', 'noopener,noreferrer');
+                        });
+                        linkList.appendChild(a);
+                    });
+                    openModal('videoModal');
+                }
+
+                // 点击收藏
+                if (favBtnItem) {
+                    if (!currentUser) { openModal('loginModal'); return; }
+                    const id = parseInt(favBtnItem.dataset.id);
+                    const idx = favorites.indexOf(id);
+                    if (idx > -1) favorites.splice(idx, 1);
+                    else favorites.push(id);
+                    favBtnItem.classList.toggle('active');
+                    favBtnItem.textContent = idx > -1 ? '🤍' : '❤️';
+                }
+                
+                // 点击模态框关闭
+                const closeBtn = target.closest('.close-btn');
+                if (closeBtn) {
+                    closeModal(closeBtn.dataset.close);
+                }
+                // 点击模态框背景关闭
+                if (target.classList.contains('modal')) {
+                    target.style.display = 'none';
                 }
             });
-        }
 
-        // 从收藏移除
-        function removeFavorite(event, animeId) {
-            event.stopPropagation();
-
-            let favorites = JSON.parse(localStorage.getItem('favorites_' + currentUser.username) || '[]');
-            favorites = favorites.filter(id => id !== animeId);
-            localStorage.setItem('favorites_' + currentUser.username, JSON.stringify(favorites));
-
-            renderFavorites();
-            renderAnimeList(animeList);
-        }
-
-        // 搜索动漫
-        function searchAnime() {
-            const keyword = document.getElementById('searchInput').value.trim().toLowerCase();
-
-            if (!keyword) {
-                renderAnimeList(animeList);
-                return;
-            }
-
-            const filtered = animeList.filter(anime =>
-                anime.title.toLowerCase().includes(keyword) ||
-                anime.categoryLabel.includes(keyword)
-            );
-
-            renderAnimeList(filtered);
-        }
-
-        // 按分类筛选
-        function filterCategory(category) {
-            // 更新标签激活状态
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
+            // 分类筛选
+            DOM.categoryTabs.addEventListener('click', (e) => {
+                const btn = e.target.closest('.tab-btn');
+                if (!btn) return;
+                DOM.tabButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const cat = btn.dataset.category;
+                renderAnime(cat === 'all' ? animeList : animeList.filter(a => a.category === cat));
             });
-            event.target.classList.add('active');
 
-            if (category === 'all') {
-                renderAnimeList(animeList);
-                return;
+            // 搜索
+            const performSearch = () => {
+                const query = DOM.searchInput.value.trim().toLowerCase();
+                if (!query) { renderAnime(animeList); return; }
+                const filtered = animeList.filter(a => a.title.toLowerCase().includes(query) || a.categoryLabel.includes(query));
+                renderAnime(filtered);
+            };
+            DOM.searchBtn.addEventListener('click', performSearch);
+            DOM.searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearch(); });
+
+            // 登录/注册/退出
+            DOM.loginBtn.addEventListener('click', () => openModal('loginModal'));
+            DOM.registerBtn.addEventListener('click', () => openModal('registerModal'));
+            DOM.loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const u = document.getElementById('loginUsername').value;
+                const p = document.getElementById('loginPassword').value;
+                const found = users.find(user => user.username === u && user.password === p);
+                if (found) {
+                    currentUser = found; closeModal('loginModal'); updateAuthUI();
+                    document.getElementById('loginError').textContent = '';
+                } else {
+                    document.getElementById('loginError').textContent = '账号或密码错误';
+                }
+            });
+            DOM.registerForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const u = document.getElementById('registerUsername').value;
+                const p = document.getElementById('registerPassword').value;
+                const c = document.getElementById('confirmPassword').value;
+                const errEl = document.getElementById('registerError');
+                errEl.textContent = '';
+                if (p !== c) { errEl.textContent = '密码不一致'; return; }
+                if (users.find(user => user.username === u)) { errEl.textContent = '用户已存在'; return; }
+                users.push({ username: u, password: p });
+                currentUser = users[users.length - 1]; closeModal('registerModal'); updateAuthUI();
+            });
+            DOM.logoutBtn.addEventListener('click', () => {
+                currentUser = null; favorites = []; updateAuthUI(); hideFavorites();
+            });
+
+            const updateAuthUI = () => {
+                if (currentUser) {
+                    DOM.notLoggedIn.style.display = 'none';
+                    DOM.loggedIn.style.display = 'flex';
+                    DOM.currentUserName.textContent = currentUser.username;
+                } else {
+                    DOM.notLoggedIn.style.display = 'flex';
+                    DOM.loggedIn.style.display = 'none';
+                }
+            };
+
+            // 收藏页
+            DOM.favBtn.addEventListener('click', () => {
+                DOM.mainContent.style.display = 'none';
+                DOM.favoritesPage.style.display = 'block';
+                renderFavorites();
+            });
+            DOM.backHomeBtn.addEventListener('click', hideFavorites);
+            function hideFavorites() { DOM.mainContent.style.display = 'block'; DOM.favoritesPage.style.display = 'none'; }
+
+            function renderFavorites() {
+                const favsGrid = document.getElementById('favoritesGrid');
+                const noFavs = document.getElementById('noFavorites');
+                favsGrid.innerHTML = '';
+                const favList = animeList.filter(a => favorites.includes(a.id));
+                if (!favList.length) {
+                    noFavs.style.display = 'block';
+                } else {
+                    noFavs.style.display = 'none';
+                    renderAnime(favList, favsGrid);
+                }
             }
 
-            const filtered = animeList.filter(anime => anime.category === category);
-            renderAnimeList(filtered);
-        }
-
-        // 点击搜索框按回车搜索
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchAnime();
-            }
+            // 初始渲染
+            renderAnime(animeList);
         });
-
-        // 点击模态框外部关闭
-        window.onclick = function(event) {
-            const loginModal = document.getElementById('loginModal');
-            const registerModal = document.getElementById('registerModal');
-            const videoModal = document.getElementById('videoModal');
-
-            if (event.target === loginModal) {
-                closeLoginModal();
-            }
-            if (event.target === registerModal) {
-                closeRegisterModal();
-            }
-            if (event.target === videoModal) {
-                closeVideoModal();
-            }
-        }
     </script>
 </body>
 </html>
